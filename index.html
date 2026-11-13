@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentals of Nursing (501102) — University Exam | إعداد: قيس الجازي</title>
+    <!-- Load Google Fonts: Inter for English academic text & Cairo for Arabic attribution -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased overflow-x-hidden transition-colors duration-200">
+
+    <!-- Top University Academic Header -->
+    <header class="bg-gradient-to-r from-blue-950 via-blue-900 to-indigo-950 text-white shadow-lg border-b border-blue-800/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <!-- University & Course Info -->
+                <div class="space-y-1.5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-800/60 border border-blue-400/30 text-blue-200 text-xs font-semibold tracking-wide uppercase">
+                        <svg class="w-3.5 h-3.5 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                        </svg>
+                        Irbid National University • Faculty of Nursing
+                    </div>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-white">
+                        Fundamentals of Nursing / Practical <span class="text-sky-300 font-bold">(501102)</span>
+                    </h1>
+                    <p class="text-xs sm:text-sm text-blue-200">
+                        Comprehensive Academic Examination • Coverage: Chapters 1–4 • 50 Multiple-Choice Questions
+                    </p>
+                </div>
+
+                <!-- Author Attribution Badge & Theme Toggle -->
+                <div class="flex flex-wrap items-center justify-between md:justify-end gap-3">
+                    <div dir="rtl" class="font-arabic flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-amber-300/40 px-4 py-2 rounded-2xl shadow-sm">
+                        <span class="flex h-2.5 w-2.5 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-300 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
+                        </span>
+                        <span class="text-sm sm:text-base font-bold text-amber-300 tracking-wide">
+                            إعداد: قيس الجازي
+                        </span>
+                    </div>
+
+                    <button id="themeToggleBtn" type="button" aria-label="Toggle Dark Mode" class="p-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white transition active:scale-95">
+                        <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sticky Control & Progress Bar -->
+    <div class="sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <!-- Mode Selector -->
+                <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <button id="modeExamBtn" type="button" onclick="setExamMode('exam')" class="px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-blue-900 text-white shadow-sm">
+                        Exam Simulation
+                    </button>
+                    <button id="modePracticeBtn" type="button" onclick="setExamMode('practice')" class="px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white">
+                        Instant Study Mode
+                    </button>
+                </div>
+
+                <!-- Timer & Progress Stats -->
+                <div class="flex items-center gap-3 sm:gap-5">
+                    <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        <svg class="w-4 h-4 text-blue-700 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span id="timerDisplay" class="font-mono text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100">60:00</span>
+                    </div>
+
+                    <div class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        Answered: <span id="answeredCount" class="text-blue-700 dark:text-sky-400 font-extrabold">0</span> / 50
+                    </div>
+
+                    <button type="button" onclick="toggleNavigator()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs sm:text-sm font-semibold border border-slate-200 dark:border-slate-700 transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                        </svg>
+                        <span class="hidden sm:inline">Question Map</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Visual Progress Bar -->
+            <div class="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden mt-2.5">
+                <div id="progressBar" class="h-full bg-gradient-to-r from-blue-600 to-sky-500 transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Collapsible Question Navigator Grid -->
+    <div id="navigatorDrawer" class="hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-inner">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Quick Question Navigator (1–50)</span>
+                <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
+                    <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-slate-200 dark:bg-slate-700 inline-block"></span> Unanswered</span>
+                    <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-blue-600 inline-block"></span> Answered</span>
+                    <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-amber-400 inline-block"></span> Flagged</span>
+                    <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-emerald-600 inline-block"></span> Correct</span>
+                    <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-rose-600 inline-block"></span> Incorrect</span>
+                </div>
+            </div>
+            <div id="navigatorGrid" class="grid grid-cols-10 sm:grid-cols-15 md:grid-cols-25 gap-1.5"></div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+
+        <!-- Exam Score Summary Dashboard (Shown after submission) -->
+        <section id="resultsDashboard" class="hidden bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md p-5 sm:p-7 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
+                <div>
+                    <span id="passStatusBadge" class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2"></span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">Examination Performance Report</h2>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Passing Grade Policy: Minimum 50% required per Irbid National University guidelines.</p>
+                </div>
+                <div class="flex items-center gap-4 bg-slate-50 dark:bg-slate-800/80 px-5 py-3 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div class="text-center">
+                        <div id="finalScoreText" class="text-2xl sm:text-3xl font-extrabold text-blue-800 dark:text-sky-400">0/50</div>
+                        <div class="text-xs font-medium text-slate-500 dark:text-slate-400">Raw Score</div>
+                    </div>
+                    <div class="h-10 w-px bg-slate-200 dark:bg-slate-700"></div>
+                    <div class="text-center">
+                        <div id="finalPercentText" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">0%</div>
+                        <div class="text-xs font-medium text-slate-500 dark:text-slate-400">Percentage</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter Breakdown -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="chapterBreakdownGrid"></div>
+
+            <!-- Post-Exam Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+                <button type="button" onclick="setStatusFilter('incorrect')" class="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-semibold shadow-sm transition">
+                    Review Incorrect Only
+                </button>
+                <button type="button" onclick="setStatusFilter('all')" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs sm:text-sm font-semibold transition">
+                    Show All 50 Questions
+                </button>
+                <button type="button" onclick="openResetModal()" class="px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-semibold transition ml-auto">
+                    Retake Exam
+                </button>
+            </div>
+        </section>
+
+        <!-- Chapter & Status Filter Controls -->
+        <section class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm space-y-3">
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">Chapters:</span>
+                <button type="button" onclick="setChapterFilter('all')" data-ch="all" class="ch-filter-btn px-3 py-2 rounded-xl text-xs font-semibold bg-blue-900 text-white transition">All Chapters (50)</button>
+                <button type="button" onclick="setChapterFilter('1')" data-ch="1" class="ch-filter-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Ch 1: Infection Control & PPE (12)</button>
+                <button type="button" onclick="setChapterFilter('2')" data-ch="2" class="ch-filter-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Ch 2: Vital Signs & Monitoring (14)</button>
+                <button type="button" onclick="setChapterFilter('3')" data-ch="3" class="ch-filter-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Ch 3: Non-Parenteral Meds (12)</button>
+                <button type="button" onclick="setChapterFilter('4')" data-ch="4" class="ch-filter-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">Ch 4: Parenteral & IV Access (12)</button>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1">Filter:</span>
+                    <button type="button" onclick="setStatusFilter('all')" data-st="all" class="st-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900 transition">All</button>
+                    <button type="button" onclick="setStatusFilter('unanswered')" data-st="unanswered" class="st-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">Unanswered</button>
+                    <button type="button" onclick="setStatusFilter('flagged')" data-st="flagged" class="st-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition">Flagged</button>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400">
+                    Instructions: Choose the <strong class="text-slate-700 dark:text-slate-200">ONE</strong> best answer for each question.
+                </p>
+            </div>
+        </section>
+
+        <!-- Questions List Container -->
+        <section id="questionsContainer" class="space-y-5"></section>
+
+        <!-- Bottom Submit & Reset Controls -->
+        <section class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-center sm:text-left">
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">Ready to Grade Your Examination?</h3>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">Submitting reveals the official Answer Key, score breakdown, and academic explanations for all 50 questions.</p>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
+                <button type="button" onclick="openResetModal()" class="px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 text-sm font-semibold transition">
+                    Reset All
+                </button>
+                <button id="submitExamBtn" type="button" onclick="handleSubmitClick()" class="px-6 py-3 rounded-xl bg-blue-900 hover:bg-blue-800 text-white text-sm font-bold shadow-md hover:shadow-lg transition active:scale-95">
+                    Submit & Grade Exam
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer with Academic Credit -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div class="text-xs text-slate-500 dark:text-slate-400">
+                Irbid National University • Faculty of Nursing • Fundamentals of Nursing Practicum (501102)
+            </div>
+            <div dir="rtl" class="font-arabic text-sm sm:text-base font-extrabold text-blue-900 dark:text-sky-400">
+                إعداد: قيس الجازي
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Confirmation Modal (Replaces native confirm/alert) -->
+    <div id="customModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 max-w-md w-full p-6 shadow-2xl space-y-4">
+            <div class="flex items-start gap-3">
+                <div id="modalIconWrapper" class="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-sky-400 shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3 id="modalTitle" class="text-lg font-bold text-slate-900 dark:text-white">Confirm Action</h3>
+                    <p id="modalMessage" class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed"></p>
+                </div>
+            </div>
+            <div class="flex items-center justify-end gap-2.5 pt-2">
+                <button type="button" onclick="closeCustomModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-semibold transition">
+                    Cancel
+                </button>
+                <button id="modalConfirmBtn" type="button" class="px-5 py-2.5 rounded-xl bg-blue-900 hover:bg-blue-800 text-white text-sm font-bold shadow-sm transition">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Complete 50-Question Bank strictly derived from Chapters 1-4 of the INU Fundamentals of Nursing Logbook
+        const examQuestions = [
+            // CHAPTER 1: Infection Control, Hand Hygiene, Surgical Scrub & PPE (Q1 - Q12)
+            {
+                id: 1,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Medium",
+                question: "According to World Health Organization (WHO) recommendations, which method is preferred as the primary means of hand hygiene in ambulatory healthcare settings, and when must soap and water be used instead?",
+                options: [
+                    "Plain soap and water is primary; alcohol-based hand rubs are required after caring for patients with diarrhea",
+                    "Alcohol-based hand rubs are primary; soap and water must be used when hands are visibly soiled or after caring for patients with infections causing diarrhea",
+                    "Antimicrobial bar soap is primary; alcohol-based gel is reserved for tasks requiring sterile technique",
+                    "Alcohol-based foam is primary; warm water alone is sufficient after removing intact disposable gloves"
+                ],
+                correct: 1,
+                explanation: "WHO recommends alcohol-based hand rubs as the primary method of hand hygiene in ambulatory settings due to efficacy and time savings, whereas soap and water must be used when hands are visibly soiled (dirt, blood, body fluids) or after caring for patients with infections causing diarrhea."
+            },
+            {
+                id: 2,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Easy",
+                question: "What are the standard recommended total durations for performing hand sanitization with an alcohol-based hand rub versus hand washing with soap and water?",
+                options: [
+                    "10 to 15 seconds for alcohol-based hand rub; 20 to 30 seconds for soap and water",
+                    "15 to 20 seconds for alcohol-based hand rub; 30 to 40 seconds for soap and water",
+                    "20 to 30 seconds for alcohol-based hand rub; 40 to 60 seconds for soap and water",
+                    "30 to 45 seconds for alcohol-based hand rub; 60 to 90 seconds for soap and water"
+                ],
+                correct: 2,
+                explanation: "Alcohol-based hand sanitization should take 20 to 30 seconds, while hand washing with soap and water should take 40 to 60 seconds."
+            },
+            {
+                id: 3,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Medium",
+                question: "During routine hand washing with soap and water, why must the nurse hold their hands below elbow level throughout the procedure?",
+                options: [
+                    "To increase water pressure and friction across the fingertips and cuticles",
+                    "To prevent water from running up the arms and back down, contaminating clean areas",
+                    "To reduce surface tension of the soap lather on the wrists",
+                    "To allow water and debris to flow from the cleaner forearm toward the dirtier fingers"
+                ],
+                correct: 1,
+                explanation: "Holding hands below elbow level during routine hand washing prevents water from running up the arms and back down, which would contaminate clean areas. (Conversely, hands are held above elbows during a surgical hand scrub.)"
+            },
+            {
+                id: 4,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Easy",
+                question: "Which of the following actions during routine hand washing with soap and water violates standard infection-control practice?",
+                options: [
+                    "Patting the hands and wrists dry with a paper towel rather than rubbing them",
+                    "Turning off manual faucet handles by gripping them with a dry paper towel",
+                    "Using shared bar soap to create a thicker antimicrobial lather",
+                    "Rubbing the hands together vigorously for at least 20 seconds, paying attention to thumbs and knuckles"
+                ],
+                correct: 2,
+                explanation: "Bar soap must NOT be used because it allows cross-contamination. Patting dry prevents abrasions/chapping, gripping faucet handles with a paper towel prevents re-contamination, and vigorous rubbing for at least 20 seconds loosens microorganisms."
+            },
+            {
+                id: 5,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Hard",
+                question: "A nursing student is performing a surgical hand scrub prior to entering the operating suite. Which action by the student requires immediate correction by the clinical instructor?",
+                options: [
+                    "Cleaning underneath each fingernail using a disposable nail cleaner after washing hands and forearms for 15–20 seconds",
+                    "Scrubbing the hand, wrist, and forearm up to 2 inches (5 cm) above the elbow",
+                    "Lowering the hands below elbow level while rinsing so soap suds drain quickly into the sink",
+                    "Holding the arms in front with elbows flexed while entering the operating suite"
+                ],
+                correct: 2,
+                explanation: "During a surgical hand scrub, hands must be kept ABOVE the elbows during scrubbing, rinsing, and entering the operating suite so water and debris flow from clean (hands) to dirty (upper arms). Lowering hands below elbows contaminates the scrubbed hands and forearms."
+            },
+            {
+                id: 6,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Medium",
+                question: "Which statement most accurately describes the microbiological purpose of a surgical hand scrub?",
+                options: [
+                    "It achieves complete sterilization of the epidermis and dermis for the duration of the surgery",
+                    "It eliminates all resident flora permanently while leaving transient microorganisms intact",
+                    "It cannot render skin completely sterile, but reduces microbial count close to zero and leaves an antimicrobial residue for several hours",
+                    "It removes deep dermal pathogens through mechanical friction without the need for bactericidal agents"
+                ],
+                correct: 2,
+                explanation: "The skin can never be rendered completely sterile; a surgical hand scrub reduces the microbial count as close to zero as possible and leaves an antimicrobial residue that inhibits microbial growth for several hours."
+            },
+            {
+                id: 7,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Easy",
+                question: "During preparation for a surgical hand scrub, which area of the hands is specifically identified as harboring the largest number of microorganisms?",
+                options: [
+                    "The palmar creases and hypothenar eminence",
+                    "The areas underneath the fingernails",
+                    "The dorsal aspect of the wrists and distal forearms",
+                    "The interdigital web spaces between the index and middle fingers"
+                ],
+                correct: 1,
+                explanation: "The areas underneath the fingernails harbor the largest numbers of microorganisms compared to the skin of the hands and forearms, requiring cleaning with a disposable nail cleaner."
+            },
+            {
+                id: 8,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Medium",
+                question: "All of the following are identified as main reasons for hand hygiene failure in hospitals EXCEPT:",
+                options: [
+                    "Poor placement of sinks or sanitizer dispensers",
+                    "The mistaken belief that wearing gloves replaces hand hygiene",
+                    "Lack of accountability and immediate feedback",
+                    "Exclusive reliance on alcohol-based hand rubs rather than bar soap"
+                ],
+                correct: 3,
+                explanation: "Poor sink/dispenser placement, the mistaken belief that gloves replace hand hygiene, and lack of accountability/feedback are all listed among the 10 main hospital failure reasons. Bar soap is prohibited due to cross-contamination, not recommended."
+            },
+            {
+                id: 9,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Hard",
+                question: "A nurse wearing personal protective equipment (PPE) during a prolonged procedure notices that the front of their surgical mask and gown have become damp from fluid splashes. What is the appropriate nursing action?",
+                options: [
+                    "Continue the procedure because fluid-resistant PPE maintains barrier integrity until torn",
+                    "Wipe the damp outer surface with an alcohol pad and continue patient care",
+                    "Change the mask and gown immediately because moisture permits organisms to seep through PPE material",
+                    "Layer a second clean gown over the damp gown until the task is completed"
+                ],
+                correct: 2,
+                explanation: "PPE loses its effectiveness when wet because moisture permits organisms to seep through the material; masks and gowns must be changed as soon as moisture is noticeable."
+            },
+            {
+                id: 10,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Medium",
+                question: "When donning a sterile surgical gown in preparation for closed gloving, why must the nurse avoid shaking the gown and stop sliding their arms once the hands reach the cuffs?",
+                options: [
+                    "Shaking creates air currents that risk contamination, and keeping hands inside the sleeves is required to perform closed gloving",
+                    "Shaking damages the inner waist ties, and extending fingers past the cuffs prevents the circulating nurse from tying the neckline",
+                    "Shaking removes the antimicrobial coating on the gown, and keeping hands inside prevents moisture buildup on the skin",
+                    "Shaking tears the 1-inch sterile margin, and keeping hands inside prevents jewelry from catching on the fabric"
+                ],
+                correct: 0,
+                explanation: "Unfolding without shaking prevents air currents that cause contamination, and keeping hands inside the sleeves (not past the cuffs) is required to perform the closed gloving technique."
+            },
+            {
+                id: 11,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Easy",
+                question: "When opening a sterile gown and glove wrapper on a flat surface, what width of the outer wrapper margin is considered nonsterile?",
+                options: [
+                    "0.5 inch (1.25 cm)",
+                    "1 inch (2.5 cm)",
+                    "1.5 inches (3.8 cm)",
+                    "2 inches (5 cm)"
+                ],
+                correct: 1,
+                explanation: "The outer 1-inch (2.5-cm) margin of the opened sterile gown/glove wrapper is considered nonsterile."
+            },
+            {
+                id: 12,
+                chapter: 1,
+                chapterName: "Ch 1: Infection Control & PPE",
+                difficulty: "Hard",
+                question: "Following a surgical procedure, a nurse must doff contaminated surgical attire (gown, gloves, goggles, and mask). Which sequence and technique strictly adhere to standard doffing guidelines?",
+                options: [
+                    "Remove mask by bottom elastic first -> remove goggles -> peel off gloves and gown together -> perform hand hygiene",
+                    "Grasp front of gown, roll inside out while peeling off gloves simultaneously -> hand hygiene -> remove goggles by earpieces -> hand hygiene -> untie bottom mask tie then top tie -> hand hygiene",
+                    "Remove gloves first -> untie neck and waist of gown -> remove mask by grasping the front panel -> remove goggles -> perform hand hygiene",
+                    "Remove goggles first -> untie top mask tie then bottom tie -> pull gown forward -> remove gloves inside out -> perform hand hygiene"
+                ],
+                correct: 1,
+                explanation: "Standard surgical attire doffing removes the most contaminated items first: (1) gown and gloves together rolled inside out -> hand hygiene; (2) goggles/face shield by earpieces/headband -> hand hygiene; (3) mask bottom tie/elastic then top tie/elastic without touching the front -> hand hygiene."
+            },
+
+            // CHAPTER 2: Vital Signs & Bedside Monitoring (Q13 - Q26)
+            {
+                id: 13,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Easy",
+                question: "Which of the following lists temperature measurement methods ranked correctly from MOST accurate to LEAST accurate?",
+                options: [
+                    "Tympanic membrane -> Rectal -> Oral -> Axillary -> Noncontact infrared thermometer (NCIT)",
+                    "Rectal -> Oral -> Tympanic membrane -> Noncontact infrared thermometer (NCIT) -> Axillary / Temporal artery",
+                    "Oral -> Rectal -> Temporal artery -> Tympanic membrane -> Noncontact infrared thermometer (NCIT)",
+                    "Rectal -> Tympanic membrane -> Oral -> Temporal artery -> Noncontact infrared thermometer (NCIT)"
+                ],
+                correct: 1,
+                explanation: "Temperature accuracy from most to least accurate is: (1) Rectal, (2) Oral, (3) Tympanic membrane, (4) Noncontact infrared thermometers (NCITs), and (5) Axillary / Temporal artery."
+            },
+            {
+                id: 14,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Medium",
+                question: "A nurse is preparing to obtain vital signs on two patients. Patient A just finished drinking hot tea, and Patient B has been lying with their right ear pressed against a pillow while wearing a hearing aid. How long must the nurse wait before measuring an oral temperature on Patient A and a right tympanic temperature on Patient B, respectively?",
+                options: [
+                    "10 minutes for Patient A; 15 minutes for Patient B",
+                    "15 to 30 minutes for Patient A; 30 minutes for Patient B",
+                    "30 to 45 minutes for Patient A; 10 to 20 minutes for Patient B",
+                    "5 to 10 minutes for Patient A; 45 minutes for Patient B"
+                ],
+                correct: 1,
+                explanation: "Wait 15 to 30 minutes after hot/cold food, fluids, or smoking before an oral reading, and wait 30 minutes if the patient has been lying with their ear on a pillow or wearing earplugs/hearing aids before a tympanic reading."
+            },
+            {
+                id: 15,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Medium",
+                question: "A nurse is measuring tympanic membrane temperatures in a pediatric clinic for a 2-year-old toddler and a 6-year-old child. How should the nurse position the outer ear in each patient to align the ear canal accurately?",
+                options: [
+                    "Pull the earlobe down and back for the 2-year-old; pull the pinna up and back for the 6-year-old",
+                    "Pull the pinna up and back for the 2-year-old; pull the earlobe down and back for the 6-year-old",
+                    "Pull the pinna straight back for both the 2-year-old and the 6-year-old",
+                    "Pull the earlobe down and forward for the 2-year-old; pull the pinna up and forward for the 6-year-old"
+                ],
+                correct: 0,
+                explanation: "For a child <=3 years (3 years or younger), pull the earlobe down and back; for a child >3 years, pull the pinna up and back to straighten and align the ear canal."
+            },
+            {
+                id: 16,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Easy",
+                question: "When measuring an oral temperature using a mercury thermometer, where should the bulb be placed and how long should it remain in place?",
+                options: [
+                    "Under the anterior tip of the tongue for 1 to 2 minutes",
+                    "In the posterior sublingual pocket for 3 to 5 minutes",
+                    "Against the buccal mucosa of the lower cheek for 2 to 3 minutes",
+                    "In the sublingual frenulum midline for 5 to 7 minutes"
+                ],
+                correct: 1,
+                explanation: "The thermometer bulb is inserted gently into the posterior sublingual pocket and left in place for 3 to 5 minutes for an accurate mercury oral reading."
+            },
+            {
+                id: 17,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Easy",
+                question: "During routine vital sign assessment, a resting adult patient's radial pulse is recorded as 52 beats/minute with a regular rhythm. How is this finding classified?",
+                options: [
+                    "Tachycardia",
+                    "Eupnea",
+                    "Bradycardia",
+                    "Irregular pulse"
+                ],
+                correct: 2,
+                explanation: "Normal adult pulse is 60–100 beats/minute; tachycardia is >100 beats/minute, and bradycardia is <60 beats/minute."
+            },
+            {
+                id: 18,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Medium",
+                question: "Which technique and rationale are correct when assessing a patient's radial pulse?",
+                options: [
+                    "Press the thumb firmly over the radial artery for 15 seconds and multiply by 4 to prevent distal blood pooling",
+                    "Place the index, middle, and ring fingers gently with moderate pressure; count for 30 seconds and multiply by 2 if regular, or 60 seconds if abnormally fast or slow",
+                    "Use the index and middle fingers with heavy pressure for 30 seconds regardless of rhythm irregularities",
+                    "Measure immediately after ambulation using the thumb and index finger for 60 seconds"
+                ],
+                correct: 1,
+                explanation: "Use the index, middle, and ring fingers with moderate pressure (never the thumb, which has its own strong pulse), counting for 30 seconds x 2 if regular/normal or 60 seconds if abnormally fast or slow."
+            },
+            {
+                id: 19,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Medium",
+                question: "Before placing the diaphragm or bell of a stethoscope over the apex of a patient's heart to measure an apical pulse, why must the nurse warm it first?",
+                options: [
+                    "To enhance acoustic transmission of low-pitched heart murmurs",
+                    "To disinfect the diaphragm surface prior to direct skin contact",
+                    "Because placing a cold stethoscope against the skin may startle the patient and momentarily increase the heart rate",
+                    "Because cold metal causes localized vasodilation that distorts pulse amplitude"
+                ],
+                correct: 2,
+                explanation: "Warming the diaphragm or bell prevents startling the patient with cold metal, which would momentarily increase their heart rate."
+            },
+            {
+                id: 20,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Easy",
+                question: "Respiration is controlled by the respiratory center in the lateral medulla oblongata. When a patient develops a fever, how does the respiratory rate typically respond to elevations in body temperature?",
+                options: [
+                    "It decreases by approximately 2 breaths/minute for every 1°F (0.6°C) above normal",
+                    "It increases by approximately 4 breaths/minute for every 1°F (0.6°C) above normal",
+                    "It increases by approximately 8 breaths/minute for every 1°C (1.8°F) above normal",
+                    "It remains unchanged unless arterial oxygen saturation drops below 85%"
+                ],
+                correct: 1,
+                explanation: "Respiration is controlled by the lateral medulla oblongata, and respiratory rate increases by approximately 4 breaths per minute for every 1°F (0.6°C) above normal body temperature."
+            },
+            {
+                id: 21,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Medium",
+                question: "While assessing a patient's respirations, the nurse notices visible use of accessory muscles in the neck and chest. Which statement correctly reflects proper assessment technique and interpretation of this finding?",
+                options: [
+                    "Inform the patient before counting so they breathe deeply; accessory muscle use indicates normal diaphragmatic strength",
+                    "Keep fingertips over the radial artery without telling the patient respirations are being counted; accessory muscle use reflects weakness of the diaphragm and external intercostal muscles",
+                    "Count respirations for 15 seconds and multiply by 4; accessory muscle use is a normal finding in resting adults",
+                    "Ask the patient to hold their breath briefly before counting; accessory muscle use indicates bradycardia"
+                ],
+                correct: 1,
+                explanation: "Keep fingertips over the radial artery without telling the patient you are counting respirations (consciousness of breathing alters the rate); accessory muscle use reflects weakness of the primary muscles of respiration (the diaphragm and external intercostal muscles)."
+            },
+            {
+                id: 22,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Hard",
+                question: "A nurse prepares to measure a seated adult patient's blood pressure on the upper arm. Which combination of preparation and cuff placement is clinically accurate?",
+                options: [
+                    "Wrap the cuff snugly 2 to 3 cm (3/4\" to 1 1/4\") above the antecubital fossa after ensuring the patient has rested 5 minutes, emptied their bladder, uncrossed their legs, and avoided caffeine/smoking for 30 minutes",
+                    "Place the lower edge of the cuff directly over the antecubital fossa while the patient sits with legs crossed and discusses their symptoms",
+                    "Wrap the cuff 5 to 6 cm above the antecubital fossa immediately after the patient finishes a cup of coffee, keeping the arm unsupported at waist level",
+                    "Inflate the cuff rapidly without prior palpation of the brachial artery, positioning the cuff 1 cm below the antecubital fossa"
+                ],
+                correct: 0,
+                explanation: "A full bladder, crossed legs, talking, and smoking/caffeine within 30 minutes all falsely elevate BP; the cuff should be wrapped 3/4\" to 1 1/4\" (2 to 3 cm) above the antecubital fossa after 5 minutes of rest."
+            },
+            {
+                id: 23,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Medium",
+                question: "During auscultatory blood pressure measurement, after the tapping sounds completely disappear at the diastolic reading, what must the nurse do before rapidly deflating the cuff?",
+                options: [
+                    "Immediately open the valve fully to prevent venous congestion in the forearm",
+                    "Re-inflate the cuff by 20 mm Hg to double-check the systolic tapping sound",
+                    "Continue releasing air gradually for at least another 10 mm Hg while auscultating to ensure no further sounds are audible",
+                    "Hold the pressure steady at the diastolic level for 15 seconds while palpating the radial pulse"
+                ],
+                correct: 2,
+                explanation: "After the diastolic sound disappears, continue releasing air gradually for at least another 10 mm Hg while auscultating to confirm that no further sounds are audible."
+            },
+            {
+                id: 24,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Hard",
+                question: "A nurse attaches a finger probe to monitor a patient's oxygen saturation (SaO2) via pulse oximetry. Which nursing action is essential to ensure an accurate reading and prevent complications?",
+                options: [
+                    "Position the patient's hand below heart level to increase venous pooling and signal strength",
+                    "Leave dark fingernail polish on the test finger to shield the sensor from ambient light interference",
+                    "Position the patient's hand at heart level to eliminate venous pulsations, verify that the displayed pulse matches the manual pulse, and inspect for skin breakdown under the probe",
+                    "Tighten the finger probe strap firmly to prevent motion artifacts during continuous 24-hour monitoring"
+                ],
+                correct: 2,
+                explanation: "Positioning the hand at heart level eliminates venous pulsations, nail polish/artificial nails interfere with light transmission, pulse rate must correlate with the manual pulse, and prolonged/tight probe placement can cause skin breakdown."
+            },
+            {
+                id: 25,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Easy",
+                question: "A hospitalized diabetic patient's point-of-care capillary blood glucose reading is 51 mg/dL (2.8 mmol/L), and the patient exhibits neuroglycopenic symptoms requiring immediate intervention. How is this glucose value categorized?",
+                options: [
+                    "Level 1 hypoglycemia",
+                    "Level 2 hypoglycemia",
+                    "Level 3 hypoglycemia",
+                    "Mild hyperglycemia"
+                ],
+                correct: 1,
+                explanation: "Hypoglycemia Level 1 is 54–68 mg/dL; Level 2 is <54 mg/dL (3.0 mmol/L) with neuroglycopenic symptoms requiring immediate intervention; Level 3 is severe hypoglycemia with altered mental/physical status requiring assistance."
+            },
+            {
+                id: 26,
+                chapter: 2,
+                chapterName: "Ch 2: Vital Signs & Monitoring",
+                difficulty: "Medium",
+                question: "Which nursing practice is correct when performing capillary blood glucose monitoring by finger stick?",
+                options: [
+                    "Monitor patients receiving a continuous IV insulin infusion every 4 to 6 hours",
+                    "Squeeze the patient's finger tightly after lancing to maximize blood volume on the test strip",
+                    "Wipe away the first drop of blood with a gauze pad if required, because it may be contaminated with tissue, fluid, or debris",
+                    "Clean the puncture site with alcohol and lance immediately while the skin is still wet to reduce pain"
+                ],
+                correct: 2,
+                explanation: "Wiping away the first drop of blood removes tissue, fluid, or debris contamination; squeezing tightly dilutes the specimen with plasma; patients on IV insulin infusions require monitoring every 30 minutes to 2 hours."
+            },
+
+            // CHAPTER 3: Safe Medication Administration & Non-Parenteral Routes (Q27 - Q38)
+            {
+                id: 27,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Medium",
+                question: "A patient develops severe hypotension after receiving an antihypertensive medication that was prescribed at the correct dose, route, and time, with no clinician or system mistakes involved. How is this event classified?",
+                options: [
+                    "Medication error",
+                    "Preventable adverse drug event (ADE)",
+                    "Nonpreventable adverse drug event (ADE)",
+                    "Omission error"
+                ],
+                correct: 2,
+                explanation: "A nonpreventable ADE results from a drug's pharmacologic properties, whereas a preventable ADE results from a clinician or systematic error."
+            },
+            {
+                id: 28,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Easy",
+                question: "Adherence to the \"Five Rights\" of medication administration is fundamental to preventing medication errors. Which action satisfies the \"Right patient\" standard?",
+                options: [
+                    "Asking the patient to state their room number and bed location",
+                    "Checking the medication label against the medication cart drawer",
+                    "Using at least two patient-specific identifiers prior to administration",
+                    "Verifying the practitioner's signature and date on the order sheet"
+                ],
+                correct: 2,
+                explanation: "The \"Right patient\" standard requires verifying the patient's identity using at least two patient-specific identifiers."
+            },
+            {
+                id: 29,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Hard",
+                question: "Which statement regarding oral drug administration is INCORRECT?",
+                options: [
+                    "Oral administration is generally the safest, most convenient, and least expensive route of drug delivery",
+                    "Oils, powders, and granules most commonly require mixing with juice or another vehicle to improve palatability",
+                    "Oral medications are contraindicated in unconscious patients, patients with nausea and vomiting, and those with gastric suction",
+                    "Nurses may independently crush any enteric-coated or sustained-release tablet into powder without consulting a pharmacist if the patient has difficulty swallowing"
+                ],
+                correct: 3,
+                explanation: "Option D is incorrect: if a patient cannot swallow a whole tablet/capsule, the nurse must consult the pharmacist before breaking scored tablets or crushing tablets to prevent adverse effects."
+            },
+            {
+                id: 30,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Medium",
+                question: "Why do medications administered via the buccal or sublingual routes achieve a rapid onset of action, typically reaching peak blood levels within 15 minutes?",
+                options: [
+                    "Gastric acid rapidly hydrolyzes the tablet into active metabolites in the stomach",
+                    "The oral mucosa's thin epithelium and abundant vasculature allow direct absorption into systemic circulation via venous drainage to the superior vena cava",
+                    "Salivary amylase actively transports the drug across the duodenal brush border into the portal vein",
+                    "First-pass hepatic metabolism converts the prodrug into its active form within 5 minutes"
+                ],
+                correct: 1,
+                explanation: "The oral mucosa's thin epithelium and abundant vasculature allow direct absorption into systemic circulation via venous drainage to the superior vena cava, bypassing gastrointestinal destruction and achieving peak levels within 15 minutes."
+            },
+            {
+                id: 31,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Hard",
+                question: "Buccal and sublingual drug administration is contraindicated or unsuitable in all of the following situations EXCEPT:",
+                options: [
+                    "A comatose patient or a patient with a poor gag reflex",
+                    "A patient with a nasogastric tube (NGT) or recent gastric surgery",
+                    "A patient with severe dry mouth or oral mucosal lesions",
+                    "A conscious, cooperative patient experiencing acute angina who needs rapid nitroglycerin absorption"
+                ],
+                correct: 3,
+                explanation: "Buccal/sublingual administration is specifically useful for conscious, cooperative patients who need rapid systemic action (such as nitroglycerin) or cannot swallow oral pills, whereas NGT, poor gag reflex, coma, and oral lesions are contraindications/limitations."
+            },
+            {
+                id: 32,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Medium",
+                question: "When administering a buccal medication versus a sublingual medication, where should the nurse place each tablet and how should the patient be positioned?",
+                options: [
+                    "Place buccal tablet under the tongue and sublingual tablet between cheek and gum, with the patient supine",
+                    "Place buccal tablet in the buccal pouch between cheek and gum, and sublingual tablet under the tongue, with the patient in a sitting position to prevent aspiration",
+                    "Place both tablets on the dorsal surface of the tongue and instruct the patient to swallow immediately with water",
+                    "Place buccal tablet against the hard palate and sublingual tablet in the lower vestibule, encouraging the patient to chew the tablet slowly"
+                ],
+                correct: 1,
+                explanation: "Buccal tablets are placed in the buccal pouch between the cheek and gum, while sublingual tablets are placed under the tongue, with the patient in a sitting position to avoid accidental aspiration."
+            },
+            {
+                id: 33,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Medium",
+                question: "A nurse is providing discharge teaching to a patient prescribed ophthalmic drops and an antibiotic eye ointment. Which instruction is clinically accurate?",
+                options: [
+                    "Anticholinergic eye drops are safe to use freely in patients predisposed to glaucoma because they lower intraocular pressure",
+                    "Antibiotic eye ointments may cause temporary blurred vision for up to 20 minutes after application",
+                    "Squeeze the eyelids tightly shut immediately after instilling eye drops to force the medication into the lacrimal duct",
+                    "Reuse a single facial tissue to wipe excess solution from both eyes to minimize waste"
+                ],
+                correct: 1,
+                explanation: "Antibiotic eye ointments may cause blurred vision for up to 20 minutes. Anticholinergics can worsen glaucoma, tight eyelid squeezing expels medication, and a fresh tissue must be used for each eye."
+            },
+            {
+                id: 34,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Hard",
+                question: "During eyedrop administration, why does the nurse instruct the patient to tilt their head back and toward the side of the affected eye, look up and away, and press gently on the inner canthus for 2 to 3 minutes after instillation?",
+                options: [
+                    "Tilting toward the affected eye and pressing the inner canthus minimize systemic absorption via the tear duct and nasal mucosa, while looking up and away moves the cornea away from the dropper",
+                    "Tilting toward the affected eye directs drops onto the central cornea, while pressing the inner canthus stimulates tear production to dilute the drug",
+                    "Looking up and away exposes the superior lacrimal punctum, while pressing the inner canthus prevents eyelid blinking for 10 minutes",
+                    "Tilting toward the affected eye drains debris from the outer to the inner canthus, while pressing the inner canthus increases intraocular absorption"
+                ],
+                correct: 0,
+                explanation: "Tilting the head back and toward the affected eye and pressing on the inner canthus for 2 to 3 minutes minimize systemic absorption through the tear duct and nasal mucosa, while looking up and away moves the cornea away from the lower lid and dropper."
+            },
+            {
+                id: 35,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Easy",
+                question: "Ophthalmic instillations (drops, ointments, and disks) are used for both therapeutic and diagnostic purposes. Which of the following is a DIAGNOSTIC purpose of ophthalmic eye drops?",
+                options: [
+                    "Lubricating a dry ocular surface",
+                    "Treating bacterial conjunctivitis",
+                    "Anesthetizing the eye or dilating the pupil",
+                    "Reducing intraocular pressure in chronic glaucoma"
+                ],
+                correct: 2,
+                explanation: "Lubricating the eye and treating infection or glaucoma are therapeutic purposes, whereas anesthetizing the eye and dilating the pupil are diagnostic uses of ophthalmic drops."
+            },
+            {
+                id: 36,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Hard",
+                question: "During assessment prior to otic instillation, a nurse observes drainage coming from the patient's ear canal. What is the clinical significance of this finding?",
+                options: [
+                    "It indicates normal cerumen liquefaction, allowing routine nonsterile ear drop instillation",
+                    "It indicates a possible tympanic membrane rupture; ear drops are usually contraindicated with a perforated eardrum unless specific medications are ordered using sterile no-touch technique",
+                    "It requires vigorous irrigation of the external auditory canal with cold water before instilling drops",
+                    "It indicates that the patient should lie on the affected side immediately after instillation to promote drainage"
+                ],
+                correct: 1,
+                explanation: "Ear drainage indicates a possible tympanic membrane rupture; eardrops are usually contraindicated with a perforated eardrum unless specifically permitted using sterile no-touch technique."
+            },
+            {
+                id: 37,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Medium",
+                question: "When instilling eardrops in an adult patient, what is the purpose of pulling the auricle (pinna) up and back and subsequently massaging the tragus?",
+                options: [
+                    "Pulling up and back prevents systemic absorption; massaging the tragus prevents medication leakage onto the cheek",
+                    "Pulling up and back straightens the ear canal so medication reaches the eardrum; massaging the tragus facilitates entry of the medication into the ear canal",
+                    "Pulling up and back widens the external meatus in infants; massaging the tragus relieves tympanic pressure",
+                    "Pulling up and back drains excess exudate; massaging the tragus anesthetizes the external auditory canal"
+                ],
+                correct: 1,
+                explanation: "Pulling the auricle (pinna) up and back straightens the adult ear canal so medication reaches the eardrum, and massaging the tragus (unless contraindicated) facilitates entry of the medication into the ear canal."
+            },
+            {
+                id: 38,
+                chapter: 3,
+                chapterName: "Ch 3: Non-Parenteral Meds",
+                difficulty: "Easy",
+                question: "What instruction should a nurse give a patient who has been prescribed medicinal lozenges?",
+                options: [
+                    "Swallow the lozenge whole with a full glass of water so it dissolves in the stomach",
+                    "Chew the lozenge thoroughly before swallowing to accelerate gastric mucosal absorption",
+                    "Allow the lozenge to dissolve slowly in the mouth and do not chew or swallow it whole, as it acts through oral absorption",
+                    "Place the lozenge in the buccal pouch and rinse with mouthwash every 2 minutes"
+                ],
+                correct: 2,
+                explanation: "Patients must be instructed to allow lozenges to dissolve slowly in the mouth rather than chewing or swallowing them whole, because the medication acts slowly through oral absorption rather than gastric mucosa."
+            },
+
+            // CHAPTER 4: Parenteral Medications & Vascular Access (Q39 - Q50)
+            {
+                id: 39,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Easy",
+                question: "Which statement accurately summarizes the two fundamental differences between a medication ampule and a medication vial?",
+                options: [
+                    "An ampule is multi-use and 99% powder; a vial is single-use and 99% liquid",
+                    "An ampule is single-use and 99% liquid; a vial is multi-use and 99% powder",
+                    "Both ampules and vials are single-use containers, but ampules require air injection prior to withdrawal",
+                    "Both ampules and vials contain 99% liquid solutions, but vials must be broken at the neck with a gauze pad"
+                ],
+                correct: 1,
+                explanation: "An ampule is single-use and 99% liquid, whereas a vial is multi-use and 99% powder."
+            },
+            {
+                id: 40,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Hard",
+                question: "Compare the correct procedure for withdrawing medication from a single-dose ampule versus a multidose vial. Which step is required for one container but NOT the other?",
+                options: [
+                    "Injecting a volume of air equal to the volume of drug to be withdrawn is required for a vial, whereas attaching a filter needle to withdraw medication is required for an ampule",
+                    "Disinfecting a rubber stopper with an antiseptic pad is required for an ampule, whereas snapping off the glass neck away from the body is required for a vial",
+                    "Inverting the container before inserting the needle is required for an ampule, whereas using an ampule breaker is required for a vial",
+                    "Keeping the needle bevel tip above the fluid level is required for a vial, whereas rolling the container between palms is required for an ampule"
+                ],
+                correct: 0,
+                explanation: "Withdrawing from a vial requires injecting a volume of air equal to the volume of drug to be withdrawn, whereas withdrawing from a glass ampule requires snapping the neck away from the body and using a filter needle (which is then replaced before injection)."
+            },
+            {
+                id: 41,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Easy",
+                question: "What are the standard volume, needle gauge, angle of insertion, and primary clinical indication for an intradermal (ID) injection?",
+                options: [
+                    "0.5 to 2 mL; 23G–25G needle; 45-degree angle; systemic insulin therapy",
+                    "0.01 to 0.1 mL; 26G–28G needle; 10- to 15-degree angle; tuberculin screening or allergy testing",
+                    "1 to 4 mL; 21G–23G needle; 90-degree angle; rapid systemic antibiotic delivery",
+                    "0.1 to 0.5 mL; 25G–27G needle; 30-degree angle; local anesthetic nerve block"
+                ],
+                correct: 1,
+                explanation: "Intradermal injections deliver 0.01 to 0.1 mL using a 26G–28G needle at a 10- to 15-degree angle into the outer layers of the skin for local diagnostic testing (tuberculin screening or allergy testing)."
+            },
+            {
+                id: 42,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Medium",
+                question: "Immediately after injecting medication intradermally into a patient's ventral forearm, the nurse observes a small raised wheal, withdraws the needle at the same angle, and leaves the site uncovered without rubbing it. What is the rationale for watching for a wheal and avoiding rubbing?",
+                options: [
+                    "The wheal confirms the medication entered the subcutaneous fat; rubbing accelerates systemic absorption",
+                    "The wheal confirms the agent was not injected too deeply; rubbing irritates underlying tissue and may alter skin test results",
+                    "The wheal indicates an immediate allergic anaphylactic reaction; rubbing spreads the allergen into the bloodstream",
+                    "The wheal shows air was trapped in the dermis; rubbing forces the medication back out through the needle track"
+                ],
+                correct: 1,
+                explanation: "Observing a wheal confirms the medication was deposited intradermally rather than too deeply, and avoiding rubbing prevents tissue irritation that could invalidate skin test results."
+            },
+            {
+                id: 43,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Medium",
+                question: "A nurse is ordered to administer subcutaneous heparin to a hospitalized postoperative patient. Which injection site and needle insertion angle are specifically recommended?",
+                options: [
+                    "Ventral forearm at a 10- to 15-degree angle",
+                    "Lower abdominal fat pad just below the umbilicus, always injected at a 90-degree angle",
+                    "Vastus lateralis muscle at a 45-degree angle",
+                    "Upper back scapular area at a 30-degree angle"
+                ],
+                correct: 1,
+                explanation: "The preferred site for subcutaneous heparin is the lower abdominal fat pad just below the umbilicus, and heparin always requires injection at a 90-degree angle."
+            },
+            {
+                id: 44,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Hard",
+                question: "Which patient scenario represents a contraindication to administering a subcutaneous or intramuscular injection at the proposed site?",
+                options: [
+                    "Administering an intramuscular injection in a patient with severely impaired coagulation mechanisms",
+                    "Rotating an insulin injection to a new site within the lateral upper arm fat pad",
+                    "Elevating the subcutaneous tissue by grasping it firmly prior to inserting a 1/2-inch needle at 45 degrees",
+                    "Administering 1.5 mL of a prescribed vaccine into the outer aspect of the upper arm"
+                ],
+                correct: 0,
+                explanation: "Intramuscular injections may be contraindicated in patients with impaired coagulation mechanisms (as well as inflamed, edematous, scarred, or lesion-covered sites)."
+            },
+            {
+                id: 45,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Medium",
+                question: "When performing an intramuscular (IM) injection using the preferred Z-track technique, why does the nurse displace the skin and subcutaneous tissue laterally before inserting the needle at 90 degrees and wait 10 seconds after injecting before withdrawing the needle?",
+                options: [
+                    "To reduce needle resistance through the epidermis and speed up bolus delivery",
+                    "To create a zigzag path that seals the needle track when released, locking the medication in the muscle and preventing leakage and subcutaneous irritation",
+                    "To aspirate venous blood more easily and prevent the medication from entering the fascia",
+                    "To allow the nurse to massage the muscle vigorously while the needle remains in place"
+                ],
+                correct: 1,
+                explanation: "The Z-track technique creates a zigzag path that seals the needle track when displaced tissue is released after waiting 10 seconds, locking the drug in the muscle and preventing leakage into subcutaneous tissue and irritation."
+            },
+            {
+                id: 46,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Easy",
+                question: "What is the maximum volume of medication that can be safely deposited into an appropriate site via intramuscular (IM) injection?",
+                options: [
+                    "Up to 1 mL",
+                    "Up to 2 mL",
+                    "Up to 5 mL",
+                    "Up to 10 mL"
+                ],
+                correct: 2,
+                explanation: "Intramuscular injections allow absorption of relatively large doses—up to 5 mL in appropriate sites (usually 1 to 4 mL)."
+            },
+            {
+                id: 47,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Hard",
+                question: "A nurse is selecting a short peripheral IV catheter for four different patients. Which catheter gauge selection is INCORRECT according to clinical guidelines?",
+                options: [
+                    "Selecting a 22G to 26G catheter for an older adult to minimize insertion-related trauma",
+                    "Selecting a 20G to 24G catheter for routine infusion therapy or blood transfusion to reduce the risk of phlebitis",
+                    "Selecting a 14G to 18G catheter for rapid transfusion in a trauma patient",
+                    "Selecting a 14G catheter for a routine 2-day maintenance infusion in an elderly patient with fragile veins because larger gauges always prevent phlebitis"
+                ],
+                correct: 3,
+                explanation: "Peripheral catheters larger than 20G are MORE likely to cause phlebitis; a 14G–18G catheter is reserved for rapid transfusion/trauma, whereas 22G–26G is recommended for older adults to minimize insertion trauma."
+            },
+            {
+                id: 48,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Hard",
+                question: "Which anatomical site is APPROPRIATE for routine peripheral IV catheter insertion in an adult patient?",
+                options: [
+                    "A vein on the dorsal or ventral surface of the nondominant forearm (such as the cephalic or basilic vein), proximal to any previous venipuncture site",
+                    "A vein in the upper extremity on the same side as a previous breast surgery with axillary node dissection and lymphedema",
+                    "A vein on the ventral or lateral surface of the wrist directly over a joint flexion crease",
+                    "A vein in the lower extremity (foot or ankle) in a patient with normal upper extremity veins"
+                ],
+                correct: 0,
+                explanation: "Veins on the dorsal and ventral surfaces of the upper extremities (preferably nondominant) moving proximally are appropriate. Arms affected by axillary node dissection, lymphedema, AV fistulas, or stroke, as well as the ventral/lateral wrist (nerve damage) and lower extremities (thrombophlebitis/ulceration), must be avoided."
+            },
+            {
+                id: 49,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Hard",
+                question: "During peripheral IV catheter insertion, after advancing the catheter into the vein and releasing the tourniquet, what is the correct procedure for disinfecting the extension set hub and verifying catheter patency?",
+                options: [
+                    "Wipe the hub briefly for 1 second, attach a syringe, and forcibly flush with sterile water even if resistance is felt",
+                    "Perform a vigorous mechanical scrub of the hub for at least 5 seconds, allow it to dry, aspirate slowly for blood return, and flush slowly with preservative-free normal saline without forcing against resistance",
+                    "Flush the catheter immediately with 20 mL of heparinized saline before checking for blood return",
+                    "Clean the hub with soap and water, apply a dressing first, and leave the catheter unflushed for 4 days"
+                ],
+                correct: 1,
+                explanation: "Perform a vigorous mechanical scrub of the extension set hub for at least 5 seconds, allow it to dry completely, aspirate slowly for blood return, and flush slowly with preservative-free normal saline without forcibly flushing against resistance."
+            },
+            {
+                id: 50,
+                chapter: 4,
+                chapterName: "Ch 4: Parenteral & IV Access",
+                difficulty: "Hard",
+                question: "A nurse is performing venipuncture to collect blood samples for laboratory analysis, including coagulation studies. Which procedural step is clinically accurate?",
+                options: [
+                    "Apply the tourniquet 6 inches above the site, insert a 21G–23G needle bevel-down at a 45-degree angle, and keep the tourniquet tied until the needle is removed",
+                    "Apply the tourniquet 2 inches (5 cm) above the site, anchor the vein 1 to 2 inches below the site, insert the needle bevel-up at a 30-degree angle, release the tourniquet when blood begins to flow, and transport coagulation studies on ice or a cold pack",
+                    "Perform venipuncture on the same arm as an active IV infusion to minimize patient discomfort, then label the tubes at the nurses' station",
+                    "Insert the needle at a 10-degree angle without anchoring the skin, shake the collection tubes vigorously, and transport coagulation specimens at 37°C"
+                ],
+                correct: 1,
+                explanation: "Apply the tourniquet 2 inches (5 cm) above the site (verifying distal pulse), anchor the vein 1 to 2 inches (2.5 to 5 cm) below the site, insert the 21G–23G needle bevel-up at a 30-degree angle, release the tourniquet once blood begins to flow, and use ice/cold pack for coagulation studies if required."
+            }
+        ];
+
+        // Application State
+        let userAnswers = {};       // { questionId: optionIndex }
+        let flaggedQuestions = {};  // { questionId: true }
+        let examMode = 'exam';      // 'exam' | 'practice'
+        let isSubmitted = false;
+        let currentChapter = 'all';
+        let currentStatus = 'all';
+        let secondsRemaining = 60 * 60; // 60 minutes standard exam timer
+        let timerInterval = null;
+
+        const optionLetters = ['A', 'B', 'C', 'D'];
+
+        // Initialize on Window Load
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderNavigator();
+            renderQuestions();
+            startTimer();
+        });
+
+        // Dark / Light Theme Management
+        function initTheme() {
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+
+            const applyTheme = (isDark) => {
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                }
+            };
+
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(prefersDark);
+
+            themeToggleBtn.addEventListener('click', () => {
+                const isCurrentlyDark = document.documentElement.classList.contains('dark');
+                applyTheme(!isCurrentlyDark);
+            });
+        }
+
+        // Countdown Timer Logic
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (isSubmitted) {
+                    clearInterval(timerInterval);
+                    return;
+                }
+                if (secondsRemaining > 0) {
+                    secondsRemaining--;
+                    updateTimerUI();
+                } else {
+                    clearInterval(timerInterval);
+                    gradeExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            const mins = Math.floor(secondsRemaining / 60);
+            const secs = secondsRemaining % 60;
+            const display = document.getElementById('timerDisplay');
+            display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            if (secondsRemaining <= 300) {
+                display.classList.add('text-rose-600', 'dark:text-rose-400');
+            } else {
+                display.classList.remove('text-rose-600', 'dark:text-rose-400');
+            }
+        }
+
+        // Switch between Exam Simulation & Instant Study Mode
+        function setExamMode(mode) {
+            examMode = mode;
+            const examBtn = document.getElementById('modeExamBtn');
+            const practiceBtn = document.getElementById('modePracticeBtn');
+
+            if (mode === 'exam') {
+                examBtn.className = "px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-blue-900 text-white shadow-sm";
+                practiceBtn.className = "px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white";
+            } else {
+                practiceBtn.className = "px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition bg-emerald-700 text-white shadow-sm";
+                examBtn.className = "px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold transition text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white";
+            }
+            renderQuestions();
+            renderNavigator();
+        }
+
+        // Toggle Quick Question Navigator
+        function toggleNavigator() {
+            const drawer = document.getElementById('navigatorDrawer');
+            drawer.classList.toggle('hidden');
+        }
+
+        // Render Navigator Grid (1 to 50)
+        function renderNavigator() {
+            const grid = document.getElementById('navigatorGrid');
+            grid.innerHTML = examQuestions.map(q => {
+                const answered = userAnswers[q.id] !== undefined;
+                const flagged = !!flaggedQuestions[q.id];
+                const showFeedback = isSubmitted || (examMode === 'practice' && answered);
+
+                let btnClass = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700";
+
+                if (showFeedback && answered) {
+                    if (userAnswers[q.id] === q.correct) {
+                        btnClass = "bg-emerald-600 text-white border-emerald-600";
+                    } else {
+                        btnClass = "bg-rose-600 text-white border-rose-600";
+                    }
+                } else if (isSubmitted && !answered) {
+                    btnClass = "bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 border-rose-300 dark:border-rose-800";
+                } else if (flagged) {
+                    btnClass = "bg-amber-400 text-slate-950 border-amber-500";
+                } else if (answered) {
+                    btnClass = "bg-blue-600 text-white border-blue-600";
+                }
+
+                return `
+                    <button type="button" onclick="jumpToQuestion(${q.id})"
+                        class="h-8 rounded-lg border text-xs font-bold flex items-center justify-center transition hover:scale-105 ${btnClass}">
+                        ${q.id}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function jumpToQuestion(qId) {
+            // Reset filters if question is currently hidden
+            currentChapter = 'all';
+            currentStatus = 'all';
+            updateFilterButtonsUI();
+            renderQuestions();
+
+            setTimeout(() => {
+                const el = document.getElementById(`question-card-${qId}`);
+                if (el) {
+                    const yOffset = -95;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            }, 50);
+        }
+
+        // Filter Handlers
+        function setChapterFilter(ch) {
+            currentChapter = ch;
+            updateFilterButtonsUI();
+            renderQuestions();
+        }
+
+        function setStatusFilter(st) {
+            currentStatus = st;
+            updateFilterButtonsUI();
+            renderQuestions();
+        }
+
+        function updateFilterButtonsUI() {
+            document.querySelectorAll('.ch-filter-btn').forEach(btn => {
+                if (btn.dataset.ch === currentChapter) {
+                    btn.className = "ch-filter-btn px-3 py-2 rounded-xl text-xs font-semibold bg-blue-900 text-white transition shadow-sm";
+                } else {
+                    btn.className = "ch-filter-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition";
+                }
+            });
+
+            document.querySelectorAll('.st-filter-btn').forEach(btn => {
+                if (btn.dataset.st === currentStatus) {
+                    btn.className = "st-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900 transition";
+                } else {
+                    btn.className = "st-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition";
+                }
+            });
+        }
+
+        // Select Option Handler
+        function selectOption(qId, optIdx) {
+            if (isSubmitted) return; // Lock answers after final submission
+            userAnswers[qId] = optIdx;
+            updateProgressStats();
+            renderNavigator();
+            renderQuestions();
+        }
+
+        // Flag Question Handler
+        function toggleFlag(qId) {
+            if (flaggedQuestions[qId]) {
+                delete flaggedQuestions[qId];
+            } else {
+                flaggedQuestions[qId] = true;
+            }
+            renderNavigator();
+            renderQuestions();
+        }
+
+        // Update Progress Bar & Counter
+        function updateProgressStats() {
+            const count = Object.keys(userAnswers).length;
+            document.getElementById('answeredCount').textContent = count;
+            const pct = Math.round((count / examQuestions.length) * 100);
+            document.getElementById('progressBar').style.width = `${pct}%`;
+        }
+
+        // Render Filtered Questions
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+
+            const filtered = examQuestions.filter(q => {
+                if (currentChapter !== 'all' && String(q.chapter) !== currentChapter) return false;
+                if (currentStatus === 'unanswered' && userAnswers[q.id] !== undefined) return false;
+                if (currentStatus === 'flagged' && !flaggedQuestions[q.id]) return false;
+                if (currentStatus === 'incorrect') {
+                    if (userAnswers[q.id] === q.correct) return false;
+                }
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-10 text-center space-y-2">
+                        <p class="text-base font-bold text-slate-800 dark:text-slate-200">No questions match the selected filter.</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Try switching back to "All Chapters" or "All" status filter.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(q => {
+                const selectedIdx = userAnswers[q.id];
+                const isAnswered = selectedIdx !== undefined;
+                const isFlagged = !!flaggedQuestions[q.id];
+                const revealFeedback = isSubmitted || (examMode === 'practice' && isAnswered);
+
+                // Difficulty Badge Styling
+                let diffBadgeClass = "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-800";
+                if (q.difficulty === "Medium") {
+                    diffBadgeClass = "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-amber-300 dark:border-amber-800";
+                } else if (q.difficulty === "Hard") {
+                    diffBadgeClass = "bg-purple-50 text-purple-700 border-purple-200 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-800";
+                }
+
+                // Build Options HTML
+                const optionsHtml = q.options.map((optText, idx) => {
+                    const isSelected = selectedIdx === idx;
+                    const isCorrectOpt = q.correct === idx;
+
+                    let cardStyle = "border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 hover:border-blue-400 dark:hover:border-sky-500 hover:bg-blue-50/40 dark:hover:bg-slate-800";
+                    let letterStyle = "bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-300 dark:border-slate-600";
+                    let statusIcon = "";
+
+                    if (revealFeedback) {
+                        if (isCorrectOpt) {
+                            cardStyle = "border-emerald-500 bg-emerald-50/90 dark:bg-emerald-950/50 dark:border-emerald-600 ring-1 ring-emerald-500";
+                            letterStyle = "bg-emerald-600 text-white border-emerald-600";
+                            statusIcon = `<span class="ml-auto text-xs font-bold text-emerald-700 dark:text-emerald-300 shrink-0">✓ Correct</span>`;
+                        } else if (isSelected && !isCorrectOpt) {
+                            cardStyle = "border-rose-500 bg-rose-50/90 dark:bg-rose-950/50 dark:border-rose-600 ring-1 ring-rose-500";
+                            letterStyle = "bg-rose-600 text-white border-rose-600";
+                            statusIcon = `<span class="ml-auto text-xs font-bold text-rose-700 dark:text-rose-300 shrink-0">✕ Your Choice</span>`;
+                        } else {
+                            cardStyle = "border-slate-200 dark:border-slate-800 opacity-70";
+                        }
+                    } else if (isSelected) {
+                        cardStyle = "border-blue-600 bg-blue-50/80 dark:bg-blue-950/40 dark:border-sky-500 ring-1 ring-blue-600 dark:ring-sky-500";
+                        letterStyle = "bg-blue-700 dark:bg-sky-500 text-white dark:text-slate-950 border-blue-700 dark:border-sky-500";
+                    }
+
+                    return `
+                        <button type="button" onclick="selectOption(${q.id}, ${idx})" ${isSubmitted ? 'disabled' : ''}
+                            class="w-full text-left p-3.5 sm:p-4 rounded-xl border transition flex items-start gap-3.5 ${cardStyle} ${isSubmitted ? 'cursor-default' : 'cursor-pointer active:scale-[0.99]'}">
+                            <span class="w-7 h-7 rounded-lg border text-xs font-extrabold flex items-center justify-center shrink-0 mt-0.5 transition ${letterStyle}">
+                                ${optionLetters[idx]}
+                            </span>
+                            <span class="text-sm sm:text-[15px] leading-relaxed text-slate-800 dark:text-slate-100 font-medium">
+                                ${optText}
+                            </span>
+                            ${statusIcon}
+                        </button>
+                    `;
+                }).join('');
+
+                // Explanation Box HTML (Shown when revealed)
+                const explanationHtml = revealFeedback ? `
+                    <div class="mt-4 p-4 rounded-xl bg-slate-100/90 dark:bg-slate-800/90 border-l-4 ${selectedIdx === q.correct ? 'border-emerald-600' : 'border-blue-700 dark:border-sky-400'} space-y-1">
+                        <div class="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider ${selectedIdx === q.correct ? 'text-emerald-700 dark:text-emerald-400' : 'text-blue-800 dark:text-sky-400'}">
+                            <span>Answer Key: Option ${optionLetters[q.correct]}</span>
+                            ${!isAnswered ? '<span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-900/60 text-rose-700 dark:text-rose-300 text-[10px]">Unanswered</span>' : ''}
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                            <strong class="text-slate-900 dark:text-white">Academic Rationale:</strong> ${q.explanation}
+                        </p>
+                    </div>
+                ` : '';
+
+                return `
+                    <article id="question-card-${q.id}" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-sm transition">
+                        <!-- Card Top Metadata -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-3.5">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-blue-950 text-white dark:bg-sky-500/20 dark:text-sky-300 dark:border dark:border-sky-500/30 text-xs font-extrabold">
+                                    Question ${q.id} of 50
+                                </span>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold">
+                                    ${q.chapterName}
+                                </span>
+                                <span class="px-2.5 py-1 rounded-lg border text-xs font-semibold ${diffBadgeClass}">
+                                    ${q.difficulty}
+                                </span>
+                            </div>
+
+                            <button type="button" onclick="toggleFlag(${q.id})"
+                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition ${isFlagged ? 'bg-amber-100 border-amber-400 text-amber-900 dark:bg-amber-900/40 dark:border-amber-600 dark:text-amber-300' : 'bg-slate-50 border-slate-200 text-slate-500 hover:text-slate-800 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400'}">
+                                <svg class="w-3.5 h-3.5" fill="${isFlagged ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+                                </svg>
+                                ${isFlagged ? 'Flagged' : 'Flag'}
+                            </button>
+                        </div>
+
+                        <!-- Question Stem -->
+                        <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-snug mb-4">
+                            ${q.question}
+                        </h3>
+
+                        <!-- Answer Choices -->
+                        <div class="space-y-2.5">
+                            ${optionsHtml}
+                        </div>
+
+                        <!-- Revealed Rationale -->
+                        ${explanationHtml}
+                    </article>
+                `;
+            }).join('');
+        }
+
+        // Submit Exam Workflow (Custom Modal instead of native confirm)
+        function handleSubmitClick() {
+            if (isSubmitted) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+            const answered = Object.keys(userAnswers).length;
+            const remaining = examQuestions.length - answered;
+
+            const title = remaining > 0 ? "Submit Incomplete Exam?" : "Submit Final Examination?";
+            const message = remaining > 0
+                ? `You have answered ${answered} out of 50 questions (${remaining} unanswered). Unanswered questions will be marked incorrect. Do you want to submit and view your score and Answer Key now?`
+                : "You have answered all 50 questions. Are you ready to submit your exam and view your final grade and detailed explanations?";
+
+            openCustomModal(title, message, () => {
+                closeCustomModal();
+                gradeExam();
+            });
+        }
+
+        function gradeExam() {
+            isSubmitted = true;
+            if (timerInterval) clearInterval(timerInterval);
+
+            let totalCorrect = 0;
+            const chStats = {
+                1: { name: "Ch 1: Infection Control", correct: 0, total: 0 },
+                2: { name: "Ch 2: Vital Signs", correct: 0, total: 0 },
+                3: { name: "Ch 3: Non-Parenteral", correct: 0, total: 0 },
+                4: { name: "Ch 4: Parenteral & IV", correct: 0, total: 0 }
+            };
+
+            examQuestions.forEach(q => {
+                chStats[q.chapter].total++;
+                if (userAnswers[q.id] === q.correct) {
+                    totalCorrect++;
+                    chStats[q.chapter].correct++;
+                }
+            });
+
+            const percentage = Math.round((totalCorrect / examQuestions.length) * 100);
+            const passed = percentage >= 50;
+
+            const dashboard = document.getElementById('resultsDashboard');
+            const badge = document.getElementById('passStatusBadge');
+            document.getElementById('finalScoreText').textContent = `${totalCorrect}/50`;
+            document.getElementById('finalPercentText').textContent = `${percentage}%`;
+
+            if (passed) {
+                badge.textContent = "PASSED (≥ 50% University Standard)";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider mb-2 bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700";
+            } else {
+                badge.textContent = "NEEDS REVIEW (< 50% Passing Threshold)";
+                badge.className = "inline-block px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider mb-2 bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300 border border-rose-300 dark:border-rose-700";
+            }
+
+            const breakdownGrid = document.getElementById('chapterBreakdownGrid');
+            breakdownGrid.innerHTML = Object.values(chStats).map(st => {
+                const chPct = Math.round((st.correct / st.total) * 100);
+                return `
+                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 space-y-2">
+                        <div class="flex items-center justify-between text-xs font-bold text-slate-700 dark:text-slate-200">
+                            <span>${st.name}</span>
+                            <span>${st.correct}/${st.total} (${chPct}%)</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div class="h-full ${chPct >= 50 ? 'bg-emerald-500' : 'bg-rose-500'}" style="width: ${chPct}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            dashboard.classList.remove('hidden');
+            const submitBtn = document.getElementById('submitExamBtn');
+            submitBtn.textContent = "Exam Graded — View Top Report";
+
+            renderNavigator();
+            renderQuestions();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Reset Exam Workflow
+        function openResetModal() {
+            openCustomModal(
+                "Reset Examination?",
+                "This will clear all your selected answers, flags, and scores, and restart the 60-minute timer. Are you sure?",
+                () => {
+                    closeCustomModal();
+                    userAnswers = {};
+                    flaggedQuestions = {};
+                    isSubmitted = false;
+                    currentChapter = 'all';
+                    currentStatus = 'all';
+                    secondsRemaining = 60 * 60;
+                    document.getElementById('resultsDashboard').classList.add('hidden');
+                    document.getElementById('submitExamBtn').textContent = "Submit & Grade Exam";
+                    updateProgressStats();
+                    updateFilterButtonsUI();
+                    updateTimerUI();
+                    startTimer();
+                    renderNavigator();
+                    renderQuestions();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            );
+        }
+
+        // Custom Modal Helpers
+        let modalCallback = null;
+        function openCustomModal(title, message, onConfirm) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            modalCallback = onConfirm;
+            const modal = document.getElementById('customModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('customModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modalCallback = null;
+        }
+
+        document.getElementById('modalConfirmBtn').addEventListener('click', () => {
+            if (typeof modalCallback === 'function') modalCallback();
+        });
+    </script>
+</body>
+</html>
